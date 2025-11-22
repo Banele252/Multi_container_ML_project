@@ -1,12 +1,26 @@
 services:
-  model_backend_app:
-    build: ./backend
+  - type: web
+    name: model-backend-app
+    runtime: docker
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
-      - '8000:8000'
-
-  model_frontend_app:
-    build: ./frontend
+      - port: 8000
+    healthCheckPath: /health
+    
+  - type: web
+    name: model-frontend-app
+    runtime: docker
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
-      - '8501:8501'
-    depends_on:
-      - model_backend_app
+      - port: 8501
+    dependsOn:
+      - model-backend-app
+    envVars:
+      - key: BACKEND_URL
+        fromService:
+          name: model-backend-app
+          property: host
