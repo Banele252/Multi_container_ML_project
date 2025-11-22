@@ -1,11 +1,16 @@
 import streamlit as st
 import requests
-
-API_URL = "http://model_backend_app:8000/makeprediction"
+import os
+from dotenv import load_dotenv
+# load the environment variables from .env file
+load_dotenv('secrets/backend.env')
+backend_container = os.getenv('BACKEND_CONTAINER')
+API_URL = f"http://{backend_container}:8000/makeprediction"
 
 #create a title for the input fields
 st.title("Purchase prediction appp")
 st.write("Enter the age and salary of a potential customer to check if they will make a purchase")
+
 
 age = st.number_input("Age",min_value= 11, max_value=70, value= 11, step=1)
 salary = st.number_input("Salary", min_value=101.0, max_value= 9999999.0, value=101.0, step=1000.0)
@@ -53,7 +58,7 @@ st.sidebar.info(
 )
 st.sidebar.write("**API Status**")
 try:
-    response = requests.get("http://model_backend_app:8000/docs")
+    response = requests.get(f"http://{backend_container}:8000/docs")
     if response.status_code == 200:
         st.sidebar.success("✅ API is running")
     else:
