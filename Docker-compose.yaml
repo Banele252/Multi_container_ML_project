@@ -7,5 +7,7 @@ services:
     build: ./frontend
     ports:
       - '8501:8501'
+    env_file:
+      - ./secrets/backend.env
     depends_on:
       - model_backend_app
