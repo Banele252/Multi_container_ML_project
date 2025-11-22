@@ -12,4 +12,5 @@ services:
       - key: BACKEND_URL
         fromService:
           name: model-backend-app
+          type: web
           property: host
