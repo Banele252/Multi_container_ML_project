@@ -1,0 +1,11 @@
+services:
+  model_backend_app:
+    build: ./backend
+    ports:
+      - '8000:8000'
+  model_frontend_app:
+    build: ./frontend
+    ports:
+      - '8501:8501'
+    depends_on:
+      - model_backend_app

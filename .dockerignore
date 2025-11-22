@@ -1,0 +1,12 @@
+### Machine learning Deployment
+
+# Project objective: 
+# 1.To create a machine learning model that performs a prediction based on two input variables (age and salary) to determine if a user described using
+#  age and salary will purchase a product in the dataset.
+# 2.To create an API that will send requests to a ML  model instance and provide feedback based on the input given.
+# 3. Create a streamlit front-end that will enable users to interact with API.
+# 4. Develop a multi-container application for the back-end (API) and the front-end (streamlit) using Docker.
+# 5. Deploy the images on a cloud service provider like Render, AWS or Microsoft Azure.
+__pycache__
+/backend/__pycache__
+.env/
