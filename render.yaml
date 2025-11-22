@@ -3,6 +3,7 @@ services:
     build: ./backend
     ports:
       - '8000:8000'
+
   model_frontend_app:
     build: ./frontend
     ports:
