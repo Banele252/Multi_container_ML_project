@@ -12,4 +12,6 @@ COPY . /app
 
 EXPOSE 8501
 
+ENV BACKEND_CONTAINER=model_backend_app
+
 CMD ["streamlit", "run", "main.py", "--server.port=8501","--server.address=0.0.0.0","--server.headless=true"]
