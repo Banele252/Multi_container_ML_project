@@ -12,8 +12,8 @@ router = APIRouter(
 #     age:int = Field(gt=10, lt=70)
 
 #if running the code locally, comment pipeline = load('model.joblib') and uncomment next line
-pipeline = load('backend/model.joblib') #The change done below is required by docker since it cannot interpret or process parent folders
-#pipeline = load('model.joblib')
+#pipeline = load('backend/model.joblib') #The change done below is required by docker since it cannot interpret or process parent folders
+pipeline = load('model.joblib')
 
 @router.get('/makeprediction',status_code=status.HTTP_200_OK)
 async def make_prediction(age:int = Query(gt=10,lt=70),salary:float = Query(gt=100,lt=100000000)):

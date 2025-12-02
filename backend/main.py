@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Query
 from joblib import load
-from .routers import prediction,mongodb
+#from .routers import prediction,mongodb # use this running code locally, do not use when starting a container.
+from routers import prediction,mongodb
 
 #create a Main API instance
 app = FastAPI()
