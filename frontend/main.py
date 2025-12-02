@@ -1,14 +1,24 @@
 import streamlit as st
 import requests
 import os
-from dotenv import load_dotenv
-# load the environment variables from .env file
+from dotenv import load_dotenv  # load the environment variables from .env file
+
 load_dotenv('secrets/backend.env')
 backend_container = os.getenv('BACKEND_CONTAINER')
-API_URL = f"http://{backend_container}:8000/makeprediction"
+
+
+API_URL = f"http://{backend_container}:8000/prediction/makeprediction"
+
+
+st.set_page_config (
+    page_title="main",
+    page_icon="🏡",
+    layout="centered",
+    initial_sidebar_state="auto"
+)
 
 #create a title for the input fields
-st.title("Purchase prediction appp")
+st.title("Purchase prediction app")
 st.write("Enter the age and salary of a potential customer to check if they will make a purchase")
 
 

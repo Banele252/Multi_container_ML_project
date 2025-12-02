@@ -9,8 +9,8 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from bson import ObjectId
 
 router = APIRouter(
-    prefix='/mongodb',
-    tags=['mongodb']
+    prefix='/users',
+    tags=['users']
 )
 
 load_dotenv('secrets/mongo.env')
