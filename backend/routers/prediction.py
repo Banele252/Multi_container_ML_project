@@ -20,7 +20,7 @@ router = APIRouter(
 load_dotenv('secrets/mongo.env')
 username = os.getenv('USER')
 password = os.getenv('PASSWORD')
-database = os.getenv('LOGS')
+database = os.getenv('DATABASE')
 
 mongo_uri = f"mongodb+srv://{username}:{password}@cluster0.k3rfzyy.mongodb.net?appName=Cluster0"
 # Create a new client and connect to the server
@@ -37,8 +37,8 @@ collection = db["prediction_logs"]
 #     age:int = Field(gt=10, lt=70)
 
 #if running the code locally, comment pipeline = load('model.joblib') and uncomment next line
-pipeline = load('backend/model.joblib') #The change done below is required by docker since it cannot interpret or process parent folders
-#pipeline = load('model.joblib')
+#pipeline = load('backend/model.joblib') #The change done below is required by docker since it cannot interpret or process parent folders
+pipeline = load('model.joblib')
 
 @router.get('/makeprediction',status_code=status.HTTP_200_OK)
 async def make_prediction(age:int = Query(gt=10,lt=70),salary:float = Query(gt=100,lt=100000000)):
