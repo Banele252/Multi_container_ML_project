@@ -17,8 +17,8 @@ router = APIRouter(
     tags=['prediction']
 )
 
-load_dotenv('secrets/mongo.env')
-username = os.getenv('USER')
+#load_dotenv('secrets/mongo.env') # this is redundant since it is already loaded above
+username = os.getenv('MONGO_USER')
 password = os.getenv('PASSWORD')
 database = os.getenv('DATABASE')
 
@@ -47,6 +47,6 @@ async def make_prediction(age:int = Query(gt=10,lt=70),salary:float = Query(gt=1
         pred_dict = {'age':age, 'salary':salary,\
                     "outcome": 'will not purchase the product' if int(prediction[0]) == 0 else 'will purchase the product'}  # Updated from .dict()
         await collection.insert_one(pred_dict)
-        return {"prediction": 'will not purchase the product' if int(prediction[0]) == 0 else 'will purchase the product'}
+        return {"prediction": 'will not purchase the product' if int(prediction[0]) == 0 else 'will purchase the product'} 
     except:
         raise HTTPException(status_code=400, detail='Error encountered during processing')
